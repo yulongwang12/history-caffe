@@ -137,3 +137,12 @@ __convert to glog__ logging scheme, keep `CUDA_CHECK`
     * change `Forward/Backward` parameter type
         * from `vector<const Blob<Dtype>*>&` to `const vector<Blob<Dtype>*>&`
 
+# [582fa14 on Sep 16, 2013](https://github.com/Yangqing/caffe/tree/582fa142ceb1b1ae3b9f1050b31edd243d98c279)
+## New
+* use `mkl.h` doing math
+* `filler.hpp` under `src/caffeine`
+    * `virtual void Fill(Blob<Dtype>* blob)`
+* `vision_layers.hpp`, `neuron_layer.cpp` under `src/caffeine`
+    * only take single blob as input and output
+    * __realize ReLULayer__
+* `layer_param_pb2.py` generated in `src/caffeine/proto`
