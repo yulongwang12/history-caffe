@@ -41,7 +41,13 @@
       required string name = 1;
     }
     ```
-
+* __add `base.h`__ under `src/caffine`:
+    * explicit constructor `Layer(const LayerParameter& param)`
+    * 4 virtual function: `Setup/Forward/Predict/Backward`
+        * parameter list: `vector<const Blob<Dtype>*>& bottom, vector<Blob<Dtype>*>* top`
+        * `Backward` has third parameter `bool propagate_down`
+    * *protected*: `bool initialized_`, `LayerParameter layer_param_`, `vector<Blob<Dtype> > blobs` (stores the parameters)
+* __add `neuron_layer.cpp`__ under `src/caffe`, include `caffeine/base.h`
 
 ## Updated
 * `common.hpp`:
