@@ -82,3 +82,58 @@ __convert to glog__ logging scheme, keep `CUDA_CHECK`
     * for `Layer<Dtype>::Forward`, switch according to `Caffeine::mode()`, if `Caffeine::CPU`, call `Forward_cpu(bottom, top)`
 * `common.cpp`, split declareration and implementation
 
+# [4fd9c3f on Sep 15, 2013](https://github.com/Yangqing/caffe/tree/4fd9c3f0943d6af94b62d00efa6928835f13cb8e)
+## Updated
+* `layer_param.proto` under `src/caffeine/proto`
+    * __add BlobProto
+        * 
+        ```protobuf
+        message BlobProto {
+          optional int32 num = 1 [default = 0];
+          optional int32 height = 2 [default = 0];
+          optional int32 width = 3 [default = 0];
+          optional int32 channels = 4 [default = 0];
+          repeated float data = 5;
+          repeated float diff = 6;
+        }
+        ```
+* `blob.hpp`, `blob.cpp`
+    * add `FromProto(const BlobProto& proto)` and `ToProto(BlobProto* proto)`
+        * 
+        ```cpp
+        template <typename Dtype>
+        void Blob<Dtype>::FromProto(const BlobProto& proto) {
+          Reshape(proto.num(), proto.channels(), proto.height(), proto.width());
+          // copy data
+          Dtype* data_vec = mutable_cpu_data();
+          for (int i = 0; i < count_; ++i) {
+            data_vec[i] = proto.data(i);
+          }
+          Dtype* diff_vec = mutable_cpu_diff();
+          for (int i = 0; i < count_; ++i) {
+            diff_vec[i] = proto.diff(i);
+          }
+        }
+        
+        template <typename Dtype>
+        void Blob<Dtype>::ToProto(BlobProto* proto) {
+          proto->set_num(num_);
+          proto->set_channels(channels_);
+          proto->set_height(height_);
+          proto->set_width(width_);
+          proto->clear_data();
+          proto->clear_diff();
+          const Dtype* data_vec = cpu_data();
+          for (int i = 0; i < count_; ++i) {
+            proto->add_data(data_vec[i]);
+          }
+          const Dtype* diff_vec = cpu_diff();
+          for (int i = 0; i < count_; ++i) {
+            proto->add_diff(diff_vec[i]);
+          }
+        }
+        ```
+* __change base.cpp to layer.cpp__
+    * change `Forward/Backward` parameter type
+        * from `vector<const Blob<Dtype>*>&` to `const vector<Blob<Dtype>*>&`
+
