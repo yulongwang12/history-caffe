@@ -44,7 +44,7 @@
 * __add `base.h`__ under `src/caffine`:
     * explicit constructor `Layer(const LayerParameter& param)`
     * 4 virtual function: `Setup/Forward/Predict/Backward`
-        * parameter list: `vector<const Blob<Dtype>*>& bottom, vector<Blob<Dtype>*>* top`
+        * parameter list: `vector<const Blob<Dtype>*>& bottom, vector<Blob<Dtype>*>& top`
         * `Backward` has third parameter `bool propagate_down`
     * *protected*: `bool initialized_`, `LayerParameter layer_param_`, `vector<Blob<Dtype> > blobs` (stores the parameters)
 * __add `neuron_layer.cpp`__ under `src/caffe`, include `caffeine/base.h`
@@ -54,3 +54,6 @@
     * more marco logging `CHECK/DCHECK/CUDA_CHECK`
 * `blob.hpp`, `blob.cpp`:
     * add `update()`
+
+# [3955799 on Sep 13, 2013](https://github.com/Yangqing/caffe/tree/395579905ced2570e2914226a52ad99aee4ca7ea)
+__compilable now__
