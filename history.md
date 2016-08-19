@@ -146,3 +146,16 @@ __convert to glog__ logging scheme, keep `CUDA_CHECK`
     * only take single blob as input and output
     * __realize ReLULayer__
 * `layer_param_pb2.py` generated in `src/caffeine/proto`
+
+# [f591631 on Sep 17, 2013](https://github.com/Yangqing/caffe/tree/f59163139908126222b480865b3e44b6b312a97f)
+## Updated
+* `common.hpp`, `common.cpp`
+    * __add Caffeine::Phase__ (enum TRAIN/TEST)
+    * __add const CAFFEINE_CUDA_NUM_THREADS=512__ for backward compatibility
+
+* `neuron_layer.cu`
+    * include cpu/gpu functions in the same file
+    * fixed instantiation `template class ReLULayer<float/double>`
+## Deleted
+* `layer.hpp`, `layer.cpp`
+    * delete `Predict` function
