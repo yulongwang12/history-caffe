@@ -185,3 +185,14 @@ __convert to glog__ logging scheme, keep `CUDA_CHECK`
         optional float beta = 14 [default = 0.75]; // for local response norm
         ```
 
+# [3d9674a on Sep 17, 2013](https://github.com/Yangqing/caffe/tree/3d9674a4b0e10fae0cb3b5201e19fb6ab08f6ae0)
+## Updated
+* `common.cpp`, `common.hpp`
+    * add curand for random generator
+    * 
+    ```cpp
+    inline int CAFFEINE_GET_BLOCKS(const in N) {
+      return (N + CAFFE_CUDA_NUM_THREADS - 1) / CAFFEINE_CUDA_NUM_THREADS;
+    }
+    ```
+* finish `dropout_layer.cu`
