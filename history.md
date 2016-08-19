@@ -34,7 +34,7 @@
 * add gtest under `src`
     * add `test_syncedmem.cpp` under `src/caffeine`
 * __add layer_param.proto__ under `src/caffeine/proto`
-    
+    * 
     ```protobuf
     package caffeine;
     message LayerParameter {
@@ -57,3 +57,22 @@
 
 # [3955799 on Sep 13, 2013](https://github.com/Yangqing/caffe/tree/395579905ced2570e2914226a52ad99aee4ca7ea)
 __compilable now__
+
+# [c18d41f on Sep 13, 2013](https://github.com/Yangqing/caffe/commit/c18d41f432c3fb519fbfaa4428c4ff4155ed1a54)
+__convert to glog__ logging scheme, keep `CUDA_CHECK`
+
+# [298e7a4 on Sep 14, 2013](https://github.com/Yangqing/caffe/tree/298e7a4129590599f4ce99b01a85a75636651210)
+## Updated
+* `common.hpp` under `src/caffine`
+    * __add singleton class Caffine__
+        * 
+        ```cpp
+        static Caffine& Get() {
+          if (!singleton_) {
+            singleton_.reset(new Caffeine());
+          }
+          return *singleton_;
+        }
+        ```
+        * *private*: constructor with CUBLAS_CHECK, `static shared_ptr<Caffine> singleton`, cublasHandle
+        
