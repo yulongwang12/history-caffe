@@ -203,4 +203,16 @@ __convert to glog__ logging scheme, keep `CUDA_CHECK`
 ## New
 * `layer_factory.hpp`, but still in if-else form
 
+# [1f54bd6 on Sep 25, 2013](https://github.com/Yangqing/caffe/tree/1f54bd6fdcfc01f6b676bcb238d3e2652630a23a)
+## Updated
+* `layer_param.proto`
+    * __add Datum__
+        * 
+        ```protobuf
+        message Datum {
+          optional BlobProto blob = 1;
+          optional int32 label = 2;
+        }
+        ```
+
 
