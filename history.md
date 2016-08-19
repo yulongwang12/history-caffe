@@ -158,3 +158,30 @@ __convert to glog__ logging scheme, keep `CUDA_CHECK`
 ## Deleted
 * `layer.hpp`, `layer.cpp`
     * delete `Predict` function
+
+# [002e004 on Sep 17, 2013](https://github.com/Yangqing/caffe/tree/002e004a6b3760016f28a189c458a66e0e574852)
+## New
+* `dropout_layer.cu`
+
+## Updated
+* `layer_param.proto` under `src/caffeine/proto`
+    * flesh out LayerParameter
+        * 
+        ```protobuf
+        // Parameters to specify layers with inner products.
+        optional int32 num_output = 3; // The number of outputs for the layer
+        optional bool biasterm = 4 [default = true]; // whether to have bias terms
+        optional FillerParameter weight_filler = 5; // The filler for the weight
+        optional FillerParameter bias_filler = 6; // The filler for the bias
+        
+        optional uint32 pad = 7 [default = 0]; // The padding size
+        optional uint32 kernelsize = 8; // The kernel size
+        optional uint32 group = 9 [default = 1]; // The group size for group conv
+        optional uint32 stride = 10 [default = 1]; // The stride
+        optional string pool = 11 [default = 'max']; // The pooling method
+        optional float dropout_ratio = 12 [default = 0.5]; // dropout ratio
+        
+        optional float alpha = 13 [default = 1.]; // for local response norm
+        optional float beta = 14 [default = 0.75]; // for local response norm
+        ```
+
