@@ -198,3 +198,9 @@ __convert to glog__ logging scheme, keep `CUDA_CHECK`
     }
     ```
 * finish `dropout_layer.cu`
+
+# [2dc29c1 on Sep 24, 2013](https://github.com/Yangqing/caffe/tree/2dc29c113a154c40c82741a3aa2e21953fb9d45c)
+## New
+* `layer_factory.hpp`, but still in if-else form
+
+
