@@ -75,4 +75,10 @@ __convert to glog__ logging scheme, keep `CUDA_CHECK`
         }
         ```
         * *private*: constructor with CUBLAS_CHECK, `static shared_ptr<Caffine> singleton`, cublasHandle
-        
+
+# [c1b20c7 on Sep 14, 2013](https://github.com/Yangqing/caffe/tree/c1b20c7318c4426eed9f8d294428c95595705a01)
+## New
+* `base.cpp` under `src/caffeine`
+    * for `Layer<Dtype>::Forward`, switch according to `Caffeine::mode()`, if `Caffeine::CPU`, call `Forward_cpu(bottom, top)`
+* `common.cpp`, split declareration and implementation
+
